@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><b></b></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><b>Home</b></a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'add_event' %}"><b>Add Events</b></a>
+        </li>
+        {% endif %}
+         <li class="nav-item">
+          <a class="nav-link" href="{% url 'event_list' %}"><b>Upcomming Events</b></a>
+        </li>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+            <b>Dropdown</b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">About US</a></li>
+            <li><a class="dropdown-item" href="#">Contacts</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Promotions</a></li>
+          </ul>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}"><b>LogIn/Log Out</b></a>
+        </li>
+      
+      </ul>
+      
+      <form class="d-flex" role="search" method="get" action="{% url 'search' %}" >
+        <input class="form-control me-2" name="query" value="{{request.GET.query}} "type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>

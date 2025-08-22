@@ -1,0 +1,173 @@
+{% extends "base.html" %} {% load static %} {% block content %} {% if user.is_authenticated %}
+<br />
+<div class="mt-5">
+
+<h3 style="text-align: center">
+  Hi {{user.username}} , Welcome to Event Application
+</h3>
+<p style="text-align: center">WHAT WOULD YOU LIKE TO EXPERIENCE</p>
+<br />
+<section class="backround">
+  <div class="container">
+    <div class="row d-flex gap-5">
+      <div class="card" style="width: 18rem">
+        <img src="{% static 'images/weds.jpg' %}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">WEDDINGS</h5>
+          <p class="card-text">
+            You wanna book a Wedding Celebration, Please click below!!.
+          </p>
+          <a href="{% url 'add_event' %}" class="btn btn-warning">Weddings</a>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem">
+        <img src="{% static 'images/grd.jpg' %}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">GRADUATIONS</h5>
+          <p class="card-text">
+            You wanna book a Graduation Ceremony, Please click below!!.
+          </p>
+          <a href="{% url 'add_event' %}" class="btn btn-warning"
+            >Graduations</a
+          >
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem">
+        <img src="{% static 'images/MTN.jpg' %}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">TOURNAMENTS</h5>
+          <p class="card-text">
+            You wanna book any Sport Event, Please click below!!.
+          </p>
+          <a href="{% url 'add_event' %}" class="btn btn-warning"
+            >Tournaments</a
+          >
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem">
+        <img src="{% static 'images/Bday.jpg' %}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">BIRTHDAYS</h5>
+          <p class="card-text">
+            You wanna book a Wedding Event, Please click below!!.
+          </p>
+          <a href="{% url 'add_event' %}" class="btn btn-warning">Birthday's</a>
+        </div>
+      </div>
+
+       <div class="card" style="width: 18rem">
+        <img src="{% static 'images/Trad.jpg' %}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">TRADITIONS</h5>
+          <p class="card-text">
+            You wanna book a Traditional Event, Please click below!!.
+          </p>
+          <a href="{% url 'add_event' %}" class="btn btn-warning">Tradition</a>
+        </div>
+      </div>
+      
+       <div class="card" style="width: 18rem">
+        <img src="{% static 'images/exb.jpg' %}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">Exhibitions</h5>
+          <p class="card-text">
+            You wanna book a any Exhibition Event, Please click below!!.
+          </p>
+          <a href="{% url 'add_event' %}" class="btn btn-warning">Exhibitions</a>
+        </div>
+      </div>
+
+       <div class="card" style="width: 18rem">
+        <img src="{% static 'images/Baby.jpg' %}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">Baby Shower</h5>
+          <p class="card-text">
+            You wanna book a Baby shower Event, Please click below!!.
+          </p>
+          <a href="{% url 'add_event' %}" class="btn btn-warning">Unveiling</a>
+        </div>
+      </div>
+
+       <div class="card" style="width: 18rem">
+        <img src="{% static 'images/Event.jpg' %}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">OTHER'S</h5>
+          <p class="card-text">
+            You wanna book any event of your choice, Please click below!!.
+          </p>
+          <a href="{% url 'add_event' %}" class="btn btn-warning">More</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+ <br>
+  <br>
+  <br>
+  {%else%}
+  <br/>
+ 
+<!-- Experience Section -->
+<section class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-5">WELCOME TO MANAGEMENT APP</h2>
+    <h2 class="fw-bold mb-5">WHAT WOULD YOU LIKE TO EXPERIENCE?</h2>
+    <br>
+    <div class="row justify-content-center g-4">
+      <!-- Events Card -->
+      <div class="col-6 col-md-4 col-lg-2 position-relative">
+        <img src="{% static 'Images/weds.jpg' %}" class="img-fluid rounded shadow" alt="">
+        <div class="position-absolute bottom-0 start-50 translate-middle-x mb-2">
+          <button class="btn btn-outline-light px-4 fw-bold">Weddings</button>
+        </div>
+      </div>
+      <!-- Buses Card -->
+      <div class="col-6 col-md-4 col-lg-2 position-relative">
+        <img src="{% static 'Images/Grdu.jpg' %}" class="img-fluid rounded shadow" alt="">
+        <div class="position-absolute bottom-0 start-50 translate-middle-x mb-2">
+          <button class="btn btn-outline-light px-4 fw-bold">Graduations</button>
+        </div>
+      </div>
+      <!-- Flights Card -->
+      <div class="col-6 col-md-4 col-lg-2 position-relative">
+        <img src="{% static 'Images/BirthD.jpg' %}" class="img-fluid rounded shadow" alt="">
+        <div class="position-absolute bottom-0 start-50 translate-middle-x mb-2">
+          <button class="btn btn-outline-light px-4 fw-bold">Birthdays</button>
+        </div>
+      </div>
+      <!-- Vouchers Card -->
+      <div class="col-6 col-md-4 col-lg-2 position-relative">
+        <img src="{% static 'Images/Entr.jpg' %}" class="img-fluid rounded shadow" alt="">
+        <div class="position-absolute bottom-0 start-50 translate-middle-x mb-2">
+          <button class="btn btn-outline-light px-4 fw-bold">Entertainment</button>
+        </div>
+      </div>
+      <!-- Stay Card -->
+      <div class="col-6 col-md-4 col-lg-2 position-relative">
+        <img src="{% static 'Images/Socc.jpg' %}" class="img-fluid rounded shadow" alt="">
+        <div class="position-absolute bottom-0 start-50 translate-middle-x mb-2">
+          <button class="btn btn-outline-light px-4 fw-bold">Tournaments</button>
+        </div>
+      </div>
+
+        <!-- More Card -->
+      <div class="col-6 col-md-4 col-lg-2 position-relative">
+        <img src="{% static 'Images/More.jpg' %}" class="img-fluid rounded shadow" alt="">
+        <div class="position-absolute bottom-0 start-50 translate-middle-x mb-2">
+          <button class="btn btn-outline-light px-4 fw-bold">More</button>
+        </div>
+      </div>
+    <p>This is a space bar</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer CTA Section -->
+  {% endif %}
+</section>
+
+</div>{% endblock %}
+</section>
