@@ -23,6 +23,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ event.title }}</h5>
           <p class="card-text">{{ event.description }}</p>
+          <small class="text-muted">By: {{event.organizer}}</small>
         </div>
         {% if request.user == event.organizer %}
         <div class="card-body">
