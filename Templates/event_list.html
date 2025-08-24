@@ -9,16 +9,91 @@
   <br />
   <br />
   <div class="row g-4">
-  
+    <!-- Filter Sidebar -->
+    <div class="col-lg-3 col-md-4">
+      <div class="filter-sidebar">
+        <h5 class="filter-title">
+          <i class="fas fa-filter"></i>Filter Events
+        </h5>
+
+        <form method="get" class="filter-form">
+          <!-- Title Filter -->
+          <div class="mb-3">
+            <label class="form-label">Event Title</label>
+            {{ filter.form.title }}
+          </div>
+
+          <!-- Location Filter -->
+          <div class="mb-3">
+            <label class="form-label">Location</label>
+            {{ filter.form.location }}
+          </div>
+
+          <!-- Date Range Filter -->
+          <div class="mb-3">
+            <label class="form-label">Date Range</label>
+            <div class="row">
+              <div class="col-6">
+                {{ filter.form.date.0 }}
+                <small class="text-muted">From</small>
+              </div>
+              <div class="col-6">
+                {{ filter.form.date.1 }}
+                <small class="text-muted">To</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Organizer Filter -->
+          <div class="mb-3">
+            <label class="form-label">Organizer</label>
+            {{ filter.form.organizer }}
+          </div>
+
+          <!-- Description Filter -->
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            {{ filter.form.description }}
+          </div>
+
+          <!-- Quick Filters -->
+          <div class="mb-3">
+            <label class="form-label">Quick Filters</label>
+            <div class="form-check">
+              {{ filter.form.happening_today }}
+              <label class="form-check-label" for="{{ filter.form.happening_today.id_for_label }}">
+                Happening Today
+              </label>
+            </div>
+            <div class="form-check">
+              {{ filter.form.upcoming_events }}
+              <label class="form-check-label" for="{{ filter.form.upcoming_events.id_for_label }}">
+                Upcoming Events
+              </label>
+            </div>
+          </div>
+
+          <!-- Filter Buttons -->
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary-custom">
+              <i class="fas fa-search me-2"></i>Apply Filters
+            </button>
+            <a href="{% url 'event_list' %}" class="btn btn-clear-filters">
+              <i class="fas fa-times me-2"></i>Clear Filters
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+
+    <div class="col-lg-9 col-md-8">
     {% if events %} {% for event in events %}
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="card h-100">
+      <div class="card">
         {% if event.image %}
-        <img
-          src="{{ event.image.url }}"
-          class="card-img-top"
-          alt="{{ event.title }}"
-        />
+        <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.title }}" />
         {% endif %}
         <div class="card-body">
           <h5 class="card-title">{{ event.title }}</h5>
@@ -27,45 +102,42 @@
         </div>
         {% if request.user == event.organizer %}
         <div class="card-body">
-          <a class="btn btn-info" href="{% url 'edit_event' event.pk %}"
-            >Edit</a
-          >
-          <a class="btn btn-danger" href="{% url 'delete_event' event.pk %}"
-            >Delete</a
-          >
+          <a class="btn btn-info" href="{% url 'edit_event' event.pk %}">Edit</a>
+          <a class="btn btn-danger" href="{% url 'delete_event' event.pk %}">Delete</a>
         </div>
         {%endif%}
-        <button class="btn btn-outline-success" data-bs-target="#event{{event.pk}}" data-bs-toggle="modal">View More</button>
+        <button class="btn btn-outline-success" data-bs-target="#event{{event.pk}}" data-bs-toggle="modal">View
+          More</button>
       </div>
     </div>
 
     <!-- Modal -->
-<div class="modal fade" id="event{{event.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">{{event.title}}</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        {{event.description}}<br>
-      
-        <p class="text-muted">Start Time: {{event.time}}</p>
-        <p class="text-muted">End Time: {{event.endTime}}</p>
-        <p class="text-muted">Location: {{event.location}}</p>
-        <p class="text-muted">organizer: {{event.organizer}}</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <div class="modal fade" id="event{{event.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">{{event.title}}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {{event.description}}<br>
+
+            <p class="text-muted">Start Time: {{event.time}}</p>
+            <p class="text-muted">End Time: {{event.endTime}}</p>
+            <p class="text-muted">Location: {{event.location}}</p>
+            <p class="text-muted">organizer: {{event.organizer}}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
     {% endfor %} {% else %}
     <p class="muted">No Events</p>
     {%endif%}
-
+    </div>
   </div>
 </div>
 {%endblock%}

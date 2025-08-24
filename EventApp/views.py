@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate , login, logout
+from django.core.paginator import Paginator
 
 from .forms import EventForm
 from .models import Event
+from .filters import EventFilter
 
 # Create your views here.
 
@@ -58,8 +60,26 @@ def logout_view(request):
     return redirect('LogIn')
 
 def event_list(request):
-    event_list = Event.objects.all()
-    return render(request,'event_list.html' ,{'events' : event_list} )
+    """
+    View to display all events with filtering capabilities
+    """
+    events = Event.objects.all()
+    event_filter = EventFilter(request.GET, queryset=events)
+    filtered_events = event_filter.qs
+    
+    # Add pagination
+    paginator = Paginator(filtered_events, 12)  # Show 12 events per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    context = {
+        'events': page_obj,
+        'filter': event_filter,
+        'total_events': filtered_events.count(),
+        'showing_filtered': bool(request.GET),
+    }
+    
+    return render(request, 'event_list.html', context)
 
 def edit_event(request,pk):
     event = get_object_or_404(Event,pk=pk)
